@@ -2,34 +2,38 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const dotanv = require("dotenv");
-const {bgCyan} = require("colors");
-require("colors");
-const connectDb = require('./config/config')
+const dotenv = require("dotenv");
+const colors = require("colors");
+const connectDb = require("./config/config");
 
-//dotenv config
-dotanv.config();
-//db config
+// dotenv config
+dotenv.config();
+
+// Check if MONGO_URI is loaded correctly
+console.log(`MongoDB URI: ${process.env.MONGO_URI}`); // This should print the URI if loaded correctly
+
+// db config
 connectDb();
-//rest object
+
+// rest object
 const app = express();
 
-//middlewares
+// middlewares
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-//routes
+// routes
 app.get('/', (req, res) => {
   res.send('<h1>POS BACKEND</h1>');
 });
 
-//port
+// port
 const PORT = process.env.PORT || 8080;
 
-//listen
+// listen
 app.listen(PORT, () => {
   console.log(`Server Running On Port ${PORT}`.bgCyan);
 });
