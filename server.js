@@ -1,12 +1,15 @@
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const dotenv = require('dotenv');
-require('colors');
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dotanv = require("dotenv");
+const {bgCyan} = require("colors");
+require("colors");
+const connectDb = require('./config/config')
 
 //dotenv config
-dotenv.config();
+dotanv.config();
+//db config
 
 //rest object
 const app = express();
@@ -28,5 +31,5 @@ const PORT = process.env.PORT || 8080;
 
 //listen
 app.listen(PORT, () => {
-  console.log(`Server Running On Port ${PORT}`.bgCyan.white);
+  console.log(`Server Running On Port ${PORT}`.bgCyan);
 });
